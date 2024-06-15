@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width="device-width", initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function textToSpeech(voiceName, text) {
+            const languageCode = voiceName.split("-")[0];
+            const xhr = new XMLHttpRequest();
+            xhr.open(
+                "POST",
+                "https://texttospeech.googleapis.com/v1/text:synthesize",
+                true
+            );
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.setRequestHeader("X-Goog-Api-Key", "YOUR_API_KEY");
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    const audioBase64 = response.audioContent;
+                    const audioBytes = Uint8Array.from(atob(audioBase64), c =>
+                        c.charCodeAt(0)
+                    );
+                    const audioBlob = new Blob([audioBytes], {
+                        type: "audio/wav",
+                    });
+                    const audioUrl = URL.createObjectURL(audioBlob);
+                    const audio = new Audio(audioUrl);
+                    audio.play();
+                } else {
+                    console.error(xhr.statusText);
+                }
+            };
+            xhr.send(
+                JSON.stringify({
+                    input: { text: text },
+                    voice: { languageCode: languageCode, name: voiceName },
+                    audioConfig: { audioEncoding: "LINEAR16" },
+                })
+            );
+        }
+    </script>
+</head>
+<body>
+    <button onclick="textToSpeech('en-US-Neural2-A', 'Hello, World! This is a test of the Google Text-to-Speech API.')">
+        Speak
+    </button>
+</body>
+</html>
+
+Replace `YOUR_API_KEY` with your actual Google Cloud API key.
+
+This code uses the `XMLHttpRequest` object to send a POST request to the Google Text-to-Speech API. The `textToSpeech` function takes a voice name and text as parameters and sends a request to the API with the specified voice and text. The response from the API is a base64-encoded audio file. The code then converts the base64-encoded audio file to a Blob object and creates an object URL for the audio file. Finally, the audio is played using the `Audio` object.
+
+When the "Speak" button is clicked, the `textToSpeech` function is called with the specified voice name and text, and the text is converted to speech using the Google Text-to-Speech API.`

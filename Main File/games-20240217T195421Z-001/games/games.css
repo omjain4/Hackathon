@@ -1,0 +1,152 @@
+body {
+    background-color: rgb(200, 200, 239);
+    background-image: url('stars.png');
+    background-size: cover;
+  }
+  
+  btn,
+.inline-btn{
+   background-color: var(--main-color);
+}
+  .gameing{
+    display: flex;
+    justify-content: center;
+    width:40%;
+    height:60%;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+  }
+  
+  .container img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  .MeltingSnowman {
+    width: 400px;
+    height: 400px;
+    border: 2px solid blue;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: melt 5s infinite;
+  }
+  
+  .word {
+    font-size: 2rem;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+  }
+  
+  .letters {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .letters button {
+    margin: 5px;
+    padding: 10px;
+    font-size: 1.2rem;
+    border: none;
+    background-color: blue;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .letters button:hover {
+    background-color: darkblue;
+  }
+  
+  .message {
+    font-size: 1.5rem;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+  }
+  
+  @keyframes melt {
+    0% {
+      width: 400px;
+      height: 400px;
+    }
+    100% {
+      width: 200px;
+      height: 200px;
+    }
+  }
+  .inline-btn,
+.inline-option-btn,
+.inline-delete-btn,
+.btn,
+.delete-btn,
+.option-btn{
+   border-radius: .5rem;
+   color:#fff;
+   font-size: 1.8rem;
+   cursor: pointer;
+   text-transform: capitalize;
+   padding:1rem 3rem;
+   text-align: center;
+   margin-top: 1rem;
+}
+
+.btn,
+.delete-btn,
+.option-btn{
+   display: block;
+   width: 100%;
+}
+
+.inline-btn,
+.inline-option-btn,
+.inline-delete-btn{
+   display: inline-block;
+}
+
+.btn,
+.inline-btn{
+   background-color: var(--main-color);
+}
+
+.option-btn,
+.inline-option-btn{
+   background-color:var(--orange);
+}
+
+.delete-btn,
+.inline-delete-btn{
+   background-color: var(--red);
+}
+
+.inline-btn:hover,
+.inline-option-btn:hover,
+.inline-delete-btn:hover,
+.btn:hover,
+.delete-btn:hover,
+.option-btn:hover{
+   background-color: var(--black);
+   color: var(--white);
+}
+
+.flex-btn{
+   display: flex;
+   gap: 1rem;
+}
